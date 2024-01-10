@@ -1,32 +1,10 @@
 // Assignment Code
 var generateBtn = document.getElementById("generate");
 var charAmount = 0;
-/*
-var charNumber = document.getElementById("characters");
-var includeUpperCaseElement = document.getElementById("includeUpperCase");
-var includeNumbersElement = document.getElementById("includeNumbers");
-var includeSymbolsElement = document.getElementById("includeSymbols");
-var form = document.getElementById("options");
-var formSumbit = document.getElementById("formSubmit");
-*/
-
-var lowerCaseCharCodes = arraySort(97, 122);
-var upperCaseCharCodes = arraySort(65, 90);
-var numbersCharCodes = arraySort(48, 57);
-var symbolsCharCodes = arraySort(33, 47).concat(arraySort(58, 64))
-.concat(arraySort(91, 96)).concat(arraySort(123, 126));
-
 
 
 // Write password to the #password input
 function writePassword(){
-/*
-  var charAmount = charNumber;
-  var includeUpperCase = includeUpperCaseElement;
-  var includeNumbers = includeNumbersElement;
-  var includeSymbols = includeSymbolsElement;
-
-  */
 
   var password = generatePassword();
   var passwordText = document.getElementById("password");
@@ -38,63 +16,83 @@ function writePassword(){
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-/*
-function showResults(){
-  console.log("This is the number of characters: " + charNumber);
-}
-
-function showForm(){
-  form.setAttribute("style", "display: ' ';");
-}
-
-generateBtn.addEventListener("click", showForm);
-
-formSubmit.addEventListener("submit", (e) => {
-  e.preventDefault();
-  var charAmount = charNumber;
-  console.log(charAmount);
-});
-*/
 
 //Function generatePassword uses conditions to create a randomized password with users conditions
 
 function generatePassword(){
   let charCodes = [];
+  var lowerCaseCharCodes = arraySort(97, 122);
+  var upperCaseCharCodes = arraySort(65, 90);
+  var numbersCharCodes = arraySort(48, 57);
+  var symbolsCharCodes = arraySort(33, 47).concat(arraySort(58, 64))
+  .concat(arraySort(91, 96)).concat(arraySort(123, 126));
 
   let charAmount = prompt("How many characters do you want for your password? (Please type a number between 8 and 128)");
 
-validateData(charAmount);
+  validateData(charAmount);
 
-getSelections();
+  console.log(charAmount);
+/*
+  getSelections(charCodes, lowerCaseCharCodes, upperCaseCharCodes, numbersCharCodes, symbolsCharCodes);
+  */
 
-validateSelections(charCodes);
+  console.log(charCodes);
 
+  let includeLowerCase = confirm("Would you like to include lower case?");
+  let includeUpperCase = confirm("Would you like to include UPPER CASE?");
+  let includeNumbers = confirm("Would you like to include numbers?");
+  let includeSymbols = confirm("Would you like to include special characters?");
 
-let password = [];
-  for (let i = 0; i < charAmount; i++){
-    var characterCode = charCodes[Math.floor(math.random() * charCodes.length)];
+  console.log(charCodes);
+
+  if (includeLowerCase){
+    charCodes = charCodes.concat(lowerCaseCharCodes);
+  }
+  console.log(charCodes);
+
+  if (includeUpperCase) {
+    charCodes = charCodes.concat(upperCaseCharCodes);
+  }
+  console.log(charCodes);
+
+  if (includeNumbers) {
+    charCodes =  charCodes.concat(numbersCharCodes);
+  }
+  console.log(charCodes);
+
+  if (includeSymbols) {
+    charCodes = charCodes.concat(symbolsCharCodes);
+  }
+  console.log(charCodes);
+
+  let password = [];
+  for (let i = 0; i <= charAmount; i++){
+    var characterCode = charCodes[Math.floor(Math.random() * charCodes.length)];
     password.push(String.fromCharCode(characterCode));
   }
-  return password = password.join('');
+  password = password.join('');
+  return password;
 }
 
 function validateData(charAmount){
   if (charAmount < 8 || charAmount > 128){
     alert("Your password needs to be between 8 and 128 characters!");
     charAmount = prompt("How many characters do you want for your password? (Please type a number between 8 and 128)");
-    validateData();
+    validateData(charAmount);
   }
   return charAmount;
 }
 
+/* NOT YET BEING USED NEEDS REFACTORING
 function validateSelections(charCodes){
-  if (charCodes.length < 1){
+  if (charCodes.length === 0){
     alert("Your need to select at least one character type!");
     getSelections();
-    validateSelections();
+    validateSelections(charCodes);
   }
   return charCodes;
 }
+*/
 
 function arraySort(low, high){
   let array =[];
@@ -103,24 +101,39 @@ function arraySort(low, high){
   }
   return array;
 }
+//Selections function was not returning the charcodes
+function getSelections(charCodes){
+  var lowerCaseCharCodes = arraySort(97, 122);
+  var upperCaseCharCodes = arraySort(65, 90);
+  var numbersCharCodes = arraySort(48, 57);
+  var symbolsCharCodes = arraySort(33, 47).concat(arraySort(58, 64))
+  .concat(arraySort(91, 96)).concat(arraySort(123, 126));
 
-function getSelections(){
   let includeLowerCase = confirm("Would you like to include lower case?");
   let includeUpperCase = confirm("Would you like to include UPPER CASE?");
   let includeNumbers = confirm("Would you like to include numbers?");
   let includeSymbols = confirm("Would you like to include special characters?");
 
+  console.log(charCodes);
+
   if (includeLowerCase){
     charCodes = charCodes.concat(lowerCaseCharCodes);
   }
+  console.log(charCodes);
+
   if (includeUpperCase) {
     charCodes = charCodes.concat(upperCaseCharCodes);
   }
+  console.log(charCodes);
+
   if (includeNumbers) {
     charCodes =  charCodes.concat(numbersCharCodes);
   }
+  console.log(charCodes);
+
   if (includeSymbols) {
     charCodes = charCodes.concat(symbolsCharCodes);
   }
-  return charCodes
+  console.log(charCodes);
+  return charCodes;
 }
