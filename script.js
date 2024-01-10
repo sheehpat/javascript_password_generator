@@ -21,9 +21,7 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword(){
 
-  let charAmount = prompt("How many characters do you want for your password? (Please type a number between 8 and 128)");
-
-  validateData(charAmount);
+  let charAmount = validateData();
 
   console.log(charAmount);
 
@@ -32,7 +30,7 @@ function generatePassword(){
   charCodes = validateSelections(charCodes);
 
   console.log(charCodes);
-  
+
 //Creates randomized password using selection criteria user inputted.
   let password = [];
   for (let i = 0; i < charAmount; i++){
@@ -43,14 +41,15 @@ function generatePassword(){
   return password;
 }
 
-//Validates that the user selected
-function validateData(charAmount){
-  if (charAmount < 8 || charAmount > 128){
-    alert("Your password needs to be between 8 and 128 characters! Refresh and start over.");
-    //charAmount = prompt("How many characters do you want for your password? (Please type a number between 8 and 128)");
-    //validateData(charAmount);
+//Validates that the user selected a valid number of characters.
+function validateData(){
+  let charCheck = prompt("How many characters do you want for your password? (Please type a number between 8 and 128)");
+
+  if (charCheck < 8 || charCheck > 128){
+    alert("Your password needs to be between 8 and 128 characters!");
+    return validateData();
   }
-  return charAmount;
+  return charCheck;
 }
 
 //Validates that the user selected at least one of the password character options.
@@ -59,9 +58,8 @@ function validateSelections(charCodes){
   if (validateCodes.length > 0){
     return validateCodes;
   }
-  alert("Your need to select at least one character type! Refresh and start over.");
-   //charCodes = getSelections();
-   //validateSelections(charCodes);
+  alert("Your need to select at least one character type!");
+   return getSelections();
 }
 
 //Assorts the unicode character codes into an array using just low and high number of array.
