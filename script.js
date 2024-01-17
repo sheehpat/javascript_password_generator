@@ -21,11 +21,11 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword(){
 
-  let charAmount = validateData();
+  var charAmount = validateData();
 
   console.log(charAmount);
 
-  let charCodes = getSelections();
+  var charCodes = getSelections();
 
   charCodes = validateSelections(charCodes);
 
@@ -70,9 +70,9 @@ function arraySort(low, high){
   }
   return array;
 }
-//Gets password selection options, and creates charCodes array for password creation.
+//Gets password selection options, and creates charCodes array for character options for password
 function getSelections(){
-  let charCodes = [];
+  var charCodes = [];
   var lowerCaseCharCodes = arraySort(97, 122);
   var upperCaseCharCodes = arraySort(65, 90);
   var numbersCharCodes = arraySort(48, 57);

@@ -2,7 +2,7 @@
 Javascript Password Generator with user selection of criteria.
 
 # Description
-Leveraging HTML, CSS, and Javascript, the password generator takes user inputs for password length and characters to create a randomized password that ensure proper length and difficulty before returning the password to the user.
+Leveraging HTML, CSS, and Javascript, the password generator takes user inputs for password length and character types to create a randomized password. The script also validates proper length and character types were selected before returning the password to the user. 
 
 # Visuals
 ![Screenshot](<password generator screenshot.jpg>)
@@ -12,7 +12,7 @@ Leveraging HTML, CSS, and Javascript, the password generator takes user inputs f
 [launchpages](https://sheehpat.github.io/javascript_password_generator)
 
 # Authors and acknowledgment
-HTML & CSS provided by Rutgers Bootcamp, Javascript refactored by Patrick Sheehan.
+HTML & CSS provided by Rutgers Bootcamp, Javascript refactored and written by Patrick Sheehan.
 
 # Project status
 Completed
